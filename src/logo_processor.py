@@ -443,6 +443,22 @@ class LogoProcessor:
         if not os.path.exists(input_folder):
             raise FileNotFoundError(f"Input folder not found: {input_folder}")
         
+        # Créer un sous-dossier spécifique selon le type de logo
+        logo_filename = os.path.basename(logo_path)
+        if "_x" in logo_filename:
+            # Extraire le type de logo (x2, x3, etc.) du nom de fichier
+            logo_type = logo_filename.split("_x")[1].split(".")[0]
+            specific_output_folder = os.path.join(output_folder, f"x{logo_type}-lots")
+        else:
+            # Fallback si le pattern n'est pas reconnu
+            specific_output_folder = os.path.join(output_folder, "processed")
+        
+        # Créer le dossier de sortie spécifique s'il n'existe pas
+        os.makedirs(specific_output_folder, exist_ok=True)
+        
+        # Utiliser le dossier spécifique au lieu du dossier de sortie général
+        output_folder = specific_output_folder
+        
         # Get all image files
         image_files = []
         for ext in extensions:

@@ -59,7 +59,9 @@ def check_logos(config: ConfigLoader) -> dict:
     """
     available_logos = {}
     
-    for logo_type in ['x6', 'x8', 'x12']:
+    # Check for logos x2 to x20
+    for i in range(2, 21):
+        logo_type = f'x{i}'
         logo_path = config.get_logo_path(logo_type)
         if os.path.exists(logo_path):
             available_logos[logo_type] = logo_path
@@ -236,10 +238,10 @@ def main():
         else:
             print("ERROR: --logo value must match pattern xN (e.g., x6, x12).")
             sys.exit(1)
-    else:
-        # Interactive fallback
+    elif not levels_list:
+        # Interactive fallback only if no levels specified
         if not available_logos:
-            print("\nAucun logo trouvé dans le dossier 'logos'. Ajoutez au moins un logo (logo_x6.png, logo_x8.png, logo_x12.png) pour continuer.")
+            print("\nAucun logo trouvé dans le dossier 'logos'. Ajoutez au moins un logo (logo_x2.png à logo_x20.png) pour continuer.")
             input("\nAppuyez sur Entrée pour quitter...")
             return
         logo_type, logo_path = select_logo(available_logos)
@@ -318,6 +320,7 @@ def main():
                 )
             run_suffix = config.get_logo_suffix(lv)
             print(f"\n--- Niveau {lv} ---")
+            print(f"Dossier de sortie: {config.get_output_dir()}/{lv}-lots")
             s, f = processor.apply_logo_to_folder(
                 logo_path=out_logo_path,
                 input_folder=input_dir,
