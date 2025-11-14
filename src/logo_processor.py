@@ -484,7 +484,8 @@ class LogoProcessor:
                 image_path = str(image_path)
                 base_name = os.path.basename(image_path)
                 name_without_ext = os.path.splitext(base_name)[0]
-                output_path = os.path.join(output_folder, f"{name_without_ext}{suffix}.jpg")
+                # Garder le nom original sans suffixe
+                output_path = os.path.join(output_folder, f"{name_without_ext}.jpg")
                 print(f"[{i}/{len(image_files)}] Processing: {base_name}")
                 if self.apply_logo_to_image(logo_path, image_path, output_path, full_quality=full_quality):
                     print(f"  ✓ Saved: {output_path}")
@@ -499,7 +500,8 @@ class LogoProcessor:
                 image_path = str(image_path)
                 base_name = os.path.basename(image_path)
                 name_without_ext = os.path.splitext(base_name)[0]
-                output_path = os.path.join(output_folder, f"{name_without_ext}{suffix}.jpg")
+                # Garder le nom original sans suffixe
+                output_path = os.path.join(output_folder, f"{name_without_ext}.jpg")
                 ok = self.apply_logo_to_image(logo_path, image_path, output_path, full_quality=full_quality)
                 return base_name, output_path, ok
             with ThreadPoolExecutor(max_workers=workers) as executor:

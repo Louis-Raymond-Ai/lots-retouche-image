@@ -147,23 +147,24 @@ Chaque logo crée son propre sous-dossier :
 ```
 output/
 ├── x2-lots/
-│   ├── image1_x2.jpg
-│   ├── image2_x2.jpg
-│   └── image3_x2.jpg
+│   ├── image1.jpg
+│   ├── image2.jpg
+│   └── image3.jpg
 ├── x8-lots/
-│   ├── image1_x8.jpg
-│   ├── image2_x8.jpg
-│   └── image3_x8.jpg
+│   ├── image1.jpg
+│   ├── image2.jpg
+│   └── image3.jpg
 └── x20-lots/
-    ├── image1_x20.jpg
-    ├── image2_x20.jpg
-    └── image3_x20.jpg
+    ├── image1.jpg
+    ├── image2.jpg
+    └── image3.jpg
 ```
 
 ### Noms des Fichiers
 
-- **Format :** `nom_original_xN.jpg`
-- **Exemple :** `produit123.png` → `produit123_x8.jpg`
+- **Format :** `nom_original.jpg`
+- **Exemple :** `produit123.png` → `produit123.jpg`
+- **Organisation :** Chaque logo dans son sous-dossier spécifique
 
 ---
 
