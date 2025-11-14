@@ -1,0 +1,75 @@
+# Logo Processor Configuration File
+# Edit this file to customize the logo processing settings
+
+# Margins (in pixels)
+margins:
+  right: 21  # Distance from right edge
+  top: 22    # Distance from top edge
+
+# Directories
+directories:
+  input: "input"      # Folder containing images to process
+  output: "output"    # Folder for processed images
+  logos: "logos"      # Folder containing logo files
+
+# Logo files
+logos:
+  x6: "logos/logo_x6.png"
+  x8: "logos/logo_x8.png"
+  x12: "logos/logo_x12.png"
+
+# Logo dimensions (width, height in pixels)
+logo_dimensions:
+  x6: [93, 97]
+  x8: [93, 97]
+  x12: [106, 103]
+
+# Processing settings
+processing:
+  jpeg_quality: 95           # JPEG quality (1-100)
+  white_threshold: 250       # Threshold for detecting non-white pixels (0-255)
+  logo_padding: 3            # Padding around logo after resizing (pixels)
+  
+# Output settings
+output:
+  format: "JPEG"             # Output format: JPEG or PNG
+  suffix_x6: "_x6"           # Suffix for x6 logo files
+  suffix_x8: "_x8"           # Suffix for x8 logo files
+  suffix_x12: "_x12"         # Suffix for x12 logo files
+  preserve_original: true    # Keep original filename in output
+
+# Advanced settings
+advanced:
+  verbose: true              # Show detailed processing information
+  save_intermediate: false   # Save intermediate processing steps
+  batch_size: 10             # Number of images to process at once
+
+# Font Management (Dynamic)
+fonts:
+  # Dossier local pour les polices personnalisées
+  local_directory: "fonts"
+  
+  # Polices préférées pour le logo x2 (par ordre de priorité)
+  x2_preferred:
+    - "impact.ttf"
+    - "Impact.ttf"
+    - "IMPACT.TTF"
+  
+  # Polices de fallback acceptables
+  x2_fallback:
+    - "arialbd.ttf"
+    - "arial-black.ttf"
+    - "helvetica-black.ttf"
+    - "anton.ttf"
+    - "futura-black.ttf"
+
+# Logo x2 Specifications (Based on Typographic Analysis)
+logo_x2:
+  width: 99
+  height: 90
+  kerning: -70
+  font_size_range: [40, 160]
+  color: "#000000"
+  background: "transparent"
+  dpi: 72
+  quality: "maximum"  # Force JPEG quality 100, no subsampling

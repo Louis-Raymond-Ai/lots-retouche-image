@@ -1,0 +1,14 @@
+# Logo Processor - Python Dependencies
+# Compatible with Python 3.8+
+
+# Image processing
+Pillow>=10.0.0
+
+# Numerical operations
+numpy>=1.24.0
+
+# Progress bar for batch processing
+tqdm>=4.65.0
+
+# Configuration file handling
+pyyaml>=6.0
