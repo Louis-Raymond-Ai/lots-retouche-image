@@ -443,6 +443,22 @@ class LogoProcessor:
         if not os.path.exists(input_folder):
             raise FileNotFoundError(f"Input folder not found: {input_folder}")
         
+        # Créer un sous-dossier spécifique selon le type de logo
+        logo_filename = os.path.basename(logo_path)
+        if "_x" in logo_filename:
+            # Extraire le type de logo (x2, x3, etc.) du nom de fichier
+            logo_type = logo_filename.split("_x")[1].split(".")[0]
+            specific_output_folder = os.path.join(output_folder, f"x{logo_type}-lots")
+        else:
+            # Fallback si le pattern n'est pas reconnu
+            specific_output_folder = os.path.join(output_folder, "processed")
+        
+        # Créer le dossier de sortie spécifique s'il n'existe pas
+        os.makedirs(specific_output_folder, exist_ok=True)
+        
+        # Utiliser le dossier spécifique au lieu du dossier de sortie général
+        output_folder = specific_output_folder
+        
         # Get all image files
         image_files = []
         for ext in extensions:
@@ -468,7 +484,8 @@ class LogoProcessor:
                 image_path = str(image_path)
                 base_name = os.path.basename(image_path)
                 name_without_ext = os.path.splitext(base_name)[0]
-                output_path = os.path.join(output_folder, f"{name_without_ext}{suffix}.jpg")
+                # Garder le nom original sans suffixe
+                output_path = os.path.join(output_folder, f"{name_without_ext}.jpg")
                 print(f"[{i}/{len(image_files)}] Processing: {base_name}")
                 if self.apply_logo_to_image(logo_path, image_path, output_path, full_quality=full_quality):
                     print(f"  ✓ Saved: {output_path}")
@@ -483,7 +500,8 @@ class LogoProcessor:
                 image_path = str(image_path)
                 base_name = os.path.basename(image_path)
                 name_without_ext = os.path.splitext(base_name)[0]
-                output_path = os.path.join(output_folder, f"{name_without_ext}{suffix}.jpg")
+                # Garder le nom original sans suffixe
+                output_path = os.path.join(output_folder, f"{name_without_ext}.jpg")
                 ok = self.apply_logo_to_image(logo_path, image_path, output_path, full_quality=full_quality)
                 return base_name, output_path, ok
             with ThreadPoolExecutor(max_workers=workers) as executor:
